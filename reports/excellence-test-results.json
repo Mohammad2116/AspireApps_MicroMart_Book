@@ -1,0 +1,746 @@
+{
+  "generated_at": "2026-11-06T06:11:17.353382+00:00",
+  "note": "Outcomes from latest XML files; run clean verify to avoid stale results. Does not certify CI or deployment.",
+  "totals": {
+    "tests": 106,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "book.companion.MoneyTest",
+      "module": "domain",
+      "kind": "surefire",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.258,
+      "cases": [
+        {
+          "name": "canonicalEquality",
+          "status": "passed",
+          "seconds": 0.193
+        },
+        {
+          "name": "exactMultiplication",
+          "status": "passed",
+          "seconds": 0.008
+        },
+        {
+          "name": "rejectsRounding",
+          "status": "passed",
+          "seconds": 0.008
+        },
+        {
+          "name": "rejectsInvalidQuantity",
+          "status": "passed",
+          "seconds": 0.002
+        },
+        {
+          "name": "rejectsNegative",
+          "status": "passed",
+          "seconds": 0.003
+        }
+      ]
+    },
+    {
+      "name": "book.companion.ReservationTest",
+      "module": "domain",
+      "kind": "surefire",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.054,
+      "cases": [
+        {
+          "name": "cannotConfirmReleased",
+          "status": "passed",
+          "seconds": 0.032
+        },
+        {
+          "name": "releaseIsIdempotent",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "confirmationRequiresExplicitCompensation",
+          "status": "passed",
+          "seconds": 0.003
+        },
+        {
+          "name": "originalIsImmutable",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "confirmIsIdempotent",
+          "status": "passed",
+          "seconds": 0.002
+        }
+      ]
+    },
+    {
+      "name": "book.companion.ArchitectureTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.371,
+      "cases": [
+        {
+          "name": "featurePackagesAreAcyclic",
+          "status": "passed",
+          "seconds": 3.093
+        },
+        {
+          "name": "conditionalViewAdvisoryPreconditionsRemainAbsent",
+          "status": "passed",
+          "seconds": 0.883
+        },
+        {
+          "name": "webCannotBypassServicesForDatabaseAccess",
+          "status": "passed",
+          "seconds": 0.748
+        },
+        {
+          "name": "domainIsFrameworkIndependent",
+          "status": "passed",
+          "seconds": 0.611
+        }
+      ]
+    },
+    {
+      "name": "book.companion.InvalidEventTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.357,
+      "cases": [
+        {
+          "name": "invalidEnvelopeNeverWritesMarker(String)[1]",
+          "status": "passed",
+          "seconds": 0.318
+        },
+        {
+          "name": "invalidEnvelopeNeverWritesMarker(String)[2]",
+          "status": "passed",
+          "seconds": 0.009
+        },
+        {
+          "name": "invalidEnvelopeNeverWritesMarker(String)[3]",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "invalidEnvelopeNeverWritesMarker(String)[4]",
+          "status": "passed",
+          "seconds": 0.003
+        },
+        {
+          "name": "invalidEnvelopeNeverWritesMarker(String)[5]",
+          "status": "passed",
+          "seconds": 0.006
+        }
+      ]
+    },
+    {
+      "name": "book.companion.JwtValidationTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.395,
+      "cases": [
+        {
+          "name": "rejectsFutureNotBefore",
+          "status": "passed",
+          "seconds": 0.011
+        },
+        {
+          "name": "acceptsSignedContract",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "rejectsMissingExpiry",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "rejectsWrongSignature",
+          "status": "passed",
+          "seconds": 0.11
+        },
+        {
+          "name": "rejectsWrongAudience",
+          "status": "passed",
+          "seconds": 0.004
+        },
+        {
+          "name": "rejectsExpired",
+          "status": "passed",
+          "seconds": 0.005
+        },
+        {
+          "name": "rejectsMissingAudience",
+          "status": "passed",
+          "seconds": 0.003
+        },
+        {
+          "name": "rejectsWrongIssuer",
+          "status": "passed",
+          "seconds": 0.003
+        },
+        {
+          "name": "rejectsMissingSubject",
+          "status": "passed",
+          "seconds": 0.004
+        }
+      ]
+    },
+    {
+      "name": "book.companion.OidcRotationTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.929,
+      "cases": [
+        {
+          "name": "otherRsaAlgorithmRejected",
+          "status": "passed",
+          "seconds": 1.951
+        },
+        {
+          "name": "unrelatedKeyRejected",
+          "status": "passed",
+          "seconds": 0.314
+        },
+        {
+          "name": "malformedTokenRejected",
+          "status": "passed",
+          "seconds": 0.227
+        },
+        {
+          "name": "newKeyRefreshesJwksAndOldKeyStillWorksDuringOverlap",
+          "status": "passed",
+          "seconds": 0.433
+        }
+      ]
+    },
+    {
+      "name": "book.companion.OutboxMetricsTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.031,
+      "cases": [
+        {
+          "name": "unavailableDatabaseIsNotReportedAsEmptyQueue",
+          "status": "passed",
+          "seconds": 0.025
+        },
+        {
+          "name": "queueGaugesReflectDatabase",
+          "status": "passed",
+          "seconds": 0.004
+        }
+      ]
+    },
+    {
+      "name": "book.companion.ProductControllerTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.057,
+      "cases": [
+        {
+          "name": "malformedId",
+          "status": "passed",
+          "seconds": 0.032
+        },
+        {
+          "name": "rejectsFractionalCents",
+          "status": "passed",
+          "seconds": 0.16
+        },
+        {
+          "name": "unauthenticatedIs401",
+          "status": "passed",
+          "seconds": 0.009
+        },
+        {
+          "name": "createdReturnsLocationAndDto",
+          "status": "passed",
+          "seconds": 0.039
+        },
+        {
+          "name": "boundedPagination",
+          "status": "passed",
+          "seconds": 0.017
+        },
+        {
+          "name": "invalidNameIs400",
+          "status": "passed",
+          "seconds": 0.011
+        },
+        {
+          "name": "missingIsProblem404",
+          "status": "passed",
+          "seconds": 0.008
+        },
+        {
+          "name": "malformedJson",
+          "status": "passed",
+          "seconds": 0.01
+        },
+        {
+          "name": "wrongScopeIs403",
+          "status": "passed",
+          "seconds": 0.009
+        }
+      ]
+    },
+    {
+      "name": "book.companion.RateLimitControllerTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 4.857,
+      "cases": [
+        {
+          "name": "overLimitHasRetryContract",
+          "status": "passed",
+          "seconds": 0.216
+        },
+        {
+          "name": "underLimitIsAllowed",
+          "status": "passed",
+          "seconds": 0.017
+        },
+        {
+          "name": "unavailableRedisFailsClosed",
+          "status": "passed",
+          "seconds": 0.077
+        }
+      ]
+    },
+    {
+      "name": "book.companion.RelayFailureTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.238,
+      "cases": [
+        {
+          "name": "batchWorkIsBounded",
+          "status": "passed",
+          "seconds": 0.128
+        },
+        {
+          "name": "interruptionIsPreservedAndClaimIsReleased",
+          "status": "passed",
+          "seconds": 0.306
+        },
+        {
+          "name": "staleAcknowledgmentIsNotCountedDelivered",
+          "status": "passed",
+          "seconds": 0.009
+        }
+      ]
+    },
+    {
+      "name": "book.companion.SecurityContractTest",
+      "module": "application",
+      "kind": "surefire",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.057,
+      "cases": [
+        {
+          "name": "rejectsInvalidIdentityContract(String)[1]",
+          "status": "passed",
+          "seconds": 0.008
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[2]",
+          "status": "passed",
+          "seconds": 0.002
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[3]",
+          "status": "passed",
+          "seconds": 0.002
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[4]",
+          "status": "passed",
+          "seconds": 0.002
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[5]",
+          "status": "passed",
+          "seconds": 0.001
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[6]",
+          "status": "passed",
+          "seconds": 0.001
+        },
+        {
+          "name": "rejectsInvalidIdentityContract(String)[7]",
+          "status": "passed",
+          "seconds": 0.002
+        }
+      ]
+    },
+    {
+      "name": "book.companion.DatabaseIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 7.596,
+      "cases": [
+        {
+          "name": "outerFailureRollsBackAllWrites",
+          "status": "passed",
+          "seconds": 0.125
+        },
+        {
+          "name": "duplicateEventHasOneEffect",
+          "status": "passed",
+          "seconds": 0.078
+        },
+        {
+          "name": "unknownRefreshRejected",
+          "status": "passed",
+          "seconds": 0.037
+        },
+        {
+          "name": "failedEffectRollsBackDedupMarker",
+          "status": "passed",
+          "seconds": 0.053
+        },
+        {
+          "name": "conflictingIdempotencyPayloadRejected",
+          "status": "passed",
+          "seconds": 0.055
+        },
+        {
+          "name": "relayRejectsAccidentalAmbientTransaction",
+          "status": "passed",
+          "seconds": 0.031
+        },
+        {
+          "name": "insufficientStockRollsBack",
+          "status": "passed",
+          "seconds": 0.046
+        },
+        {
+          "name": "competingReservationsNeverOversell",
+          "status": "passed",
+          "seconds": 0.171
+        },
+        {
+          "name": "paginationHasStableTieBreaker",
+          "status": "passed",
+          "seconds": 0.136
+        },
+        {
+          "name": "negativeQuantityCannotIncreaseStock",
+          "status": "passed",
+          "seconds": 0.038
+        },
+        {
+          "name": "concurrentRefreshHasSingleWinnerThenRevokesFamily",
+          "status": "passed",
+          "seconds": 0.042
+        },
+        {
+          "name": "databaseConstraintRejectsNegativeStock",
+          "status": "passed",
+          "seconds": 0.032
+        },
+        {
+          "name": "oversizedOrderTotalIsAConflictAndDoesNotReserve",
+          "status": "passed",
+          "seconds": 0.036
+        },
+        {
+          "name": "expiredRefreshRejected",
+          "status": "passed",
+          "seconds": 0.032
+        },
+        {
+          "name": "migrationsAndJpaMappingWork",
+          "status": "passed",
+          "seconds": 0.03
+        },
+        {
+          "name": "expiredFinalAttemptIsQuarantined",
+          "status": "passed",
+          "seconds": 0.047
+        },
+        {
+          "name": "abandonedLeaseIsRecoveredAndStaleOwnerCannotFinish",
+          "status": "passed",
+          "seconds": 0.054
+        },
+        {
+          "name": "kafkaSendRunsWithoutDatabaseTransaction",
+          "status": "passed",
+          "seconds": 0.064
+        },
+        {
+          "name": "finalFailedSendIsQuarantined",
+          "status": "passed",
+          "seconds": 0.054
+        },
+        {
+          "name": "concurrentDuplicateConsumptionCommitsOneEffect",
+          "status": "passed",
+          "seconds": 0.052
+        },
+        {
+          "name": "refreshRotationRollbackDoesNotConsumeToken",
+          "status": "passed",
+          "seconds": 0.038
+        },
+        {
+          "name": "ownerIsolation",
+          "status": "passed",
+          "seconds": 0.042
+        },
+        {
+          "name": "simultaneousSameRequestCreatesOneOrder",
+          "status": "passed",
+          "seconds": 0.079
+        },
+        {
+          "name": "twoWorkersCannotOwnSameLease",
+          "status": "passed",
+          "seconds": 0.043
+        },
+        {
+          "name": "orderUsesServerPriceAndOneTransaction",
+          "status": "passed",
+          "seconds": 0.041
+        },
+        {
+          "name": "refreshRotationAndReplayRevokeFamily",
+          "status": "passed",
+          "seconds": 0.034
+        },
+        {
+          "name": "unacknowledgedPublicationStaysPending",
+          "status": "passed",
+          "seconds": 0.067
+        },
+        {
+          "name": "relaySkipsRowsLockedByAnotherTransaction",
+          "status": "passed",
+          "seconds": 0.051
+        },
+        {
+          "name": "bulkUpdateInvalidatesStaleVersion",
+          "status": "passed",
+          "seconds": 0.063
+        }
+      ]
+    },
+    {
+      "name": "book.companion.HttpApiIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 19.354,
+      "cases": [
+        {
+          "name": "actuatorDoesNotExposeEnvironment",
+          "status": "passed",
+          "seconds": 0.847
+        },
+        {
+          "name": "rejectsRealWrongAudienceAtFilter",
+          "status": "passed",
+          "seconds": 0.106
+        },
+        {
+          "name": "authenticatedInsufficientScopeIs403",
+          "status": "passed",
+          "seconds": 0.025
+        },
+        {
+          "name": "sameSubjectInAnotherTenantCannotReadOrOrder",
+          "status": "passed",
+          "seconds": 0.553
+        },
+        {
+          "name": "requestIdIsBoundedAndTraceContextIsAccepted",
+          "status": "passed",
+          "seconds": 0.07
+        },
+        {
+          "name": "livenessDoesNotRequireRedis",
+          "status": "passed",
+          "seconds": 0.033
+        },
+        {
+          "name": "securityErrorsAreProblemDetailsAndSafe",
+          "status": "passed",
+          "seconds": 0.026
+        },
+        {
+          "name": "signedHttpOrderRoundTripAndOwnership",
+          "status": "passed",
+          "seconds": 0.161
+        }
+      ]
+    },
+    {
+      "name": "book.companion.KafkaOutboxIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 12.061,
+      "cases": [
+        {
+          "name": "crashWindowAfterKafkaAckBeforeDatabaseCommitIsRecoverable",
+          "status": "passed",
+          "seconds": 0.562
+        },
+        {
+          "name": "poisonMessageReachesRealDeadLetterTopic",
+          "status": "passed",
+          "seconds": 1.074
+        },
+        {
+          "name": "realRelayAndConsumedDuplicateHaveOneEffect",
+          "status": "passed",
+          "seconds": 0.241
+        }
+      ]
+    },
+    {
+      "name": "book.companion.MigrationIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.547,
+      "cases": [
+        {
+          "name": "upgradePreservesOldRowsAndIndexesServeScopedPagination",
+          "status": "passed",
+          "seconds": 0.47
+        }
+      ]
+    },
+    {
+      "name": "book.companion.PackagedApplicationIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 14.075,
+      "cases": [
+        {
+          "name": "packagedJarDiscoversKeysAndServesAuthenticatedRequest",
+          "status": "passed",
+          "seconds": 11.214
+        }
+      ]
+    },
+    {
+      "name": "book.companion.RedisIT",
+      "module": "application",
+      "kind": "failsafe",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.47,
+      "cases": [
+        {
+          "name": "outageFailsClosedAndConnectionRecovers",
+          "status": "passed",
+          "seconds": 1.131
+        },
+        {
+          "name": "tenantIsolationAndCacheHit",
+          "status": "passed",
+          "seconds": 0.029
+        },
+        {
+          "name": "delimitersCannotCollide",
+          "status": "passed",
+          "seconds": 0.012
+        },
+        {
+          "name": "ttlAndEvictionReload",
+          "status": "passed",
+          "seconds": 0.227
+        },
+        {
+          "name": "limiterExpires",
+          "status": "passed",
+          "seconds": 0.22
+        },
+        {
+          "name": "invalidationFencesAnOldLoader",
+          "status": "passed",
+          "seconds": 0.019
+        },
+        {
+          "name": "atomicLimiterUnderConcurrency",
+          "status": "passed",
+          "seconds": 0.027
+        },
+        {
+          "name": "invalidTtlRejectedBeforeWrite",
+          "status": "passed",
+          "seconds": 0.013
+        }
+      ]
+    }
+  ]
+}

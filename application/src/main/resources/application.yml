@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: book-companion
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/book}
+    username: ${DB_USER:book}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+      minimum-idle: 2
+      connection-timeout: 3000
+      validation-timeout: 1000
+      data-source-properties:
+        options: -c statement_timeout=5000 -c lock_timeout=3000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      connect-timeout: 1s
+      timeout: 1s
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+        max.block.ms: 5000
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 5000
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+    listener:
+      ack-mode: record
+    admin:
+      auto-create: ${KAFKA_AUTO_CREATE:false}
+server:
+  shutdown: graceful
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+      group:
+        readiness:
+          include: readinessState,db
+app:
+  security:
+    issuer: ${JWT_ISSUER}
+    audience: ${JWT_AUDIENCE:orders-api}
+  relay:
+    delay-ms: ${RELAY_DELAY_MS:250}
+    enabled: ${RELAY_ENABLED:false}
+  consumer:
+    enabled: ${CONSUMER_ENABLED:false}
+
+logging:
+  structured:
+    format:
+      console: logstash
+  level:
+    org.springframework.kafka.listener: OFF
+    org.apache.kafka: WARN
+    org.hibernate: WARN
+    org.springframework.data: WARN
+    org.springframework.security: INFO

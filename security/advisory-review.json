@@ -1,0 +1,18 @@
+{
+  "reviewed_on": "2026-11-05",
+  "expires_on": "2026-12-05",
+  "exceptions": [
+    {
+      "id": "CVE-2026-47884",
+      "package": "org.springframework:spring-webmvc",
+      "reason": "No XsltView, wildcard view resolution or view-rendering controller exists. Guarded by ArchitectureTest. Affected library remains present; this is applicability triage, not a patch.",
+      "vendor": "https://spring.io/security/cve-2026-47884/"
+    },
+    {
+      "id": "CVE-2026-47890",
+      "package": "org.springframework:spring-webmvc",
+      "reason": "No SSE view-fragment rendering exists. Guarded by ArchitectureTest. Affected library remains present.",
+      "vendor": "https://spring.io/security/cve-2026-47890/"
+    }
+  ]
+}

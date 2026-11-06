@@ -1,0 +1,13 @@
+.git
+.env
+**/target/**
+!application/target/application-1.0.0-SNAPSHOT.jar
+reports
+work
+*.bundle
+
+.tools
+.quality-venv
+**/__pycache__
+*.pem
+*.key

@@ -1,0 +1,16 @@
+ALTER TABLE outbox ADD COLUMN status VARCHAR(16) NOT NULL DEFAULT 'PENDING';
+ALTER TABLE outbox ADD COLUMN ownership_token UUID;
+ALTER TABLE outbox ADD COLUMN lease_until TIMESTAMPTZ;
+ALTER TABLE outbox ADD COLUMN next_attempt_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE outbox ADD COLUMN attempts INTEGER NOT NULL DEFAULT 0 CHECK(attempts>=0);
+ALTER TABLE outbox ADD COLUMN last_error VARCHAR(64);
+UPDATE outbox SET status='PUBLISHED' WHERE published_at IS NOT NULL;
+ALTER TABLE outbox ADD CONSTRAINT outbox_status_valid CHECK(status IN ('PENDING','CLAIMED','PUBLISHED','FAILED'));
+CREATE INDEX outbox_claimable ON outbox(status,next_attempt_at,lease_until,created_at,id) WHERE published_at IS NULL;
+ALTER TABLE products ALTER COLUMN owner TYPE VARCHAR(512);
+ALTER TABLE orders ALTER COLUMN owner TYPE VARCHAR(512);
+UPDATE products SET owner='legacy#'||owner;
+UPDATE orders SET owner='legacy#'||owner;
+ALTER TABLE orders ADD CONSTRAINT order_total_positive CHECK(total>0);
+ALTER TABLE analytics ADD CONSTRAINT analytics_total_nonnegative CHECK(total>=0);
+CREATE INDEX orders_owner_id ON orders(owner,id);

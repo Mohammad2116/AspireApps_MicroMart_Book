@@ -1,0 +1,90 @@
+name: Engineering evidence
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with: {distribution: temurin, java-version: '21', cache: maven}
+      - run: ./mvnw -B -ntp spotless:check verify
+  integration:
+    needs: unit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with: {distribution: temurin, java-version: '21', cache: maven}
+      - run: ./mvnw -B -ntp clean verify -Pintegration,sbom
+      - run: python3 scripts/test_report.py --output reports/ci-results.json
+        if: always()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: accepted-build
+          path: |
+            application/target/application-1.0.0-SNAPSHOT.jar
+            target/bom.json
+            **/target/site/jacoco/**
+            **/target/*-reports/*.xml
+            reports/ci-results.json
+  security:
+    needs: integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with: {distribution: temurin, java-version: '21', cache: maven}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with: {name: accepted-build}
+      - run: |
+          sha256sum application/target/application-1.0.0-SNAPSHOT.jar > /tmp/accepted-jar.sha256
+          ./mvnw -B -ntp verify -Pstatic -DskipTests
+          sha256sum -c /tmp/accepted-jar.sha256
+      - run: |
+          mkdir -p reports/security
+          python3 scripts/static_gate.py > reports/security/static-review.json
+          cp application/target/spotbugsXml.xml reports/security/application-spotbugs.xml
+          cp domain/target/spotbugsXml.xml reports/security/domain-spotbugs.xml
+      - run: sh scripts/install_quality_tools.sh
+      - run: |
+          mkdir -p reports/security ops/health
+          javac -d ops/health ops/HealthProbe.java
+          docker build --target runtime-from-tested -t book-companion:ci .
+          .tools/trivy sbom --format json --output reports/security/dependencies.json target/bom.json
+          .tools/trivy image --pkg-types os --format json --output reports/security/image.json book-companion:ci
+          .tools/trivy fs --scanners secret --skip-dirs .tools --format json --output reports/security/secrets.json .
+          python3 scripts/security_gate.py reports/security/dependencies.json reports/security/image.json reports/security/secrets.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with: {name: security-evidence, path: reports/security/}
+  packaging:
+    needs: [integration, security]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with: {distribution: temurin, java-version: '21'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with: {name: accepted-build}
+      - run: |
+          DB_PASSWORD=configuration-validation-only docker compose config --quiet
+          mkdir -p ops/health
+          javac -d ops/health ops/HealthProbe.java
+          docker build --target runtime-from-tested -t book-companion:excellence .
+          sh scripts/install_quality_tools.sh
+          python3 -m venv .quality-venv
+          .quality-venv/bin/pip install -r scripts/runtime-requirements.txt
+          .quality-venv/bin/python scripts/runtime_validation.py --k6 .tools/k6-v2.3.0-linux-amd64/k6
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with: {name: runtime-evidence, path: reports/runtime/}

@@ -1,0 +1,16 @@
+rule_files:
+  - alerts.yml
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      - series: book_outbox_failed
+        values: '1+0x5'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: OutboxQuarantine
+        exp_alerts:
+          - exp_labels: {severity: warning}
+            exp_annotations:
+              summary: Relay retries exhausted; inspect and deliberately requeue
+              runbook: docs/RUNBOOKS.md#outbox

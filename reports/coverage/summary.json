@@ -1,0 +1,54 @@
+{
+  "domain": {
+    "INSTRUCTION": {
+      "covered": 107,
+      "missed": 0
+    },
+    "BRANCH": {
+      "covered": 8,
+      "missed": 0
+    },
+    "LINE": {
+      "covered": 21,
+      "missed": 0
+    },
+    "COMPLEXITY": {
+      "covered": 10,
+      "missed": 0
+    },
+    "METHOD": {
+      "covered": 6,
+      "missed": 0
+    },
+    "CLASS": {
+      "covered": 3,
+      "missed": 0
+    }
+  },
+  "application": {
+    "INSTRUCTION": {
+      "covered": 1893,
+      "missed": 62
+    },
+    "BRANCH": {
+      "covered": 93,
+      "missed": 15
+    },
+    "LINE": {
+      "covered": 393,
+      "missed": 15
+    },
+    "COMPLEXITY": {
+      "covered": 141,
+      "missed": 20
+    },
+    "METHOD": {
+      "covered": 102,
+      "missed": 5
+    },
+    "CLASS": {
+      "covered": 28,
+      "missed": 1
+    }
+  }
+}

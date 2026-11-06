@@ -1,0 +1,173 @@
+{
+  "findings": [
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.cache.RedisExamples",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.cache.RedisExamples",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.messaging.AnalyticsConsumer",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.messaging.AnalyticsConsumer",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.messaging.AnalyticsConsumer",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.orders.OrderService",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.orders.OrderService",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.outbox.OutboxRelay",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.outbox.OutboxRelay",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "REC_CATCH_EXCEPTION",
+      "class": "book.companion.outbox.OutboxRelay",
+      "category": "STYLE",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "CT_CONSTRUCTOR_THROW",
+      "class": "book.companion.outbox.OutboxStore",
+      "category": "BAD_PRACTICE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.outbox.OutboxStore",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.security.ProblemSecurityHandler",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "EI_EXPOSE_REP2",
+      "class": "book.companion.security.RefreshTokens",
+      "category": "MALICIOUS_CODE",
+      "priority": 2,
+      "review": null
+    },
+    {
+      "type": "SPRING_CSRF_PROTECTION_DISABLED",
+      "class": "book.companion.security.SecurityConfig",
+      "category": "SECURITY",
+      "priority": 1,
+      "review": "Bearer-only API; no cookie authentication; filter tests enforce access."
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.OrderController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.OrderController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.ProductController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.ProductController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.ProductController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "SPRING_ENDPOINT",
+      "class": "book.companion.web.RateLimitController",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "CRLF_INJECTION_LOGS",
+      "class": "book.companion.web.RequestCorrelation",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    },
+    {
+      "type": "HRS_REQUEST_PARAMETER_TO_HTTP_HEADER",
+      "class": "book.companion.web.RequestCorrelation",
+      "category": "SECURITY",
+      "priority": 2,
+      "review": "Full-match ASCII [A-Za-z0-9_-]{1,64}, otherwise generated UUID; no control characters accepted."
+    },
+    {
+      "type": "SERVLET_HEADER",
+      "class": "book.companion.web.RequestCorrelation",
+      "category": "SECURITY",
+      "priority": 3,
+      "review": null
+    }
+  ],
+  "blocking": []
+}

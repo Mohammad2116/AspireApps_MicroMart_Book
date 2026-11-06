@@ -1,0 +1,32 @@
+groups:
+  - name: book-companion
+    rules:
+      - alert: OutboxOldestPending
+        expr: book_outbox_oldest_seconds > 60
+        for: 2m
+        labels: {severity: warning}
+        annotations: {summary: "Outbox is not draining; inspect broker and lease failures", runbook: "docs/RUNBOOKS.md#outbox"}
+      - alert: OutboxQuarantine
+        expr: book_outbox_failed > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: "Relay retries exhausted; inspect and deliberately requeue", runbook: "docs/RUNBOOKS.md#outbox"}
+      - alert: DeadLetterEvents
+        expr: increase(book_consumer_dlt_total[5m]) > 0
+        labels: {severity: warning}
+        annotations: {summary: "Invalid or exhausted events reached DLT", runbook: "docs/RUNBOOKS.md#dlt"}
+      - alert: RedisErrors
+        expr: increase(book_redis_errors_total[5m]) > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: "Redis limiter failures; requests fail closed", runbook: "docs/RUNBOOKS.md#redis"}
+      - alert: DatabasePoolWaiting
+        expr: hikaricp_connections_pending > 0
+        for: 2m
+        labels: {severity: warning}
+        annotations: {summary: "Database pool queue persists", runbook: "docs/RUNBOOKS.md#postgresql"}
+      - alert: ApplicationUnavailable
+        expr: up{job="book"} == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "Scrape unavailable; check app and ops token expiry", runbook: "docs/RUNBOOKS.md#authentication"}
