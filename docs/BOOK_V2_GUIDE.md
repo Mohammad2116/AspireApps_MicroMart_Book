@@ -43,7 +43,7 @@ With Java 21, unzip and a working Docker daemon, the full command should end in 
 
 
 ### Reader experiment
-Create a disposable branch. Add a dependency from domain to Spring and rerun the suite. Explain which architecture rule detects it and why merely building successfully would be insufficient. Revert the experiment before other chapters. Separately compare two JAR checksums after repeated packaging; record toolchain and timezone before interpreting a difference.
+Create a disposable branch. Add a Spring type reference inside a domain class, with the dependency needed to compile it, and rerun the suite. Explain which architecture rule detects it and why merely building successfully would be insufficient. Revert the experiment before other chapters. Separately compare two JAR checksums after repeated packaging; record toolchain and timezone before interpreting a difference.
 
 
 ### Architectural connection
@@ -94,7 +94,7 @@ The scale operation uses UNNECESSARY, so excess fractional precision is rejected
 
 
 ### Expected result
-MoneyTest passes exact arithmetic and invalid-value cases. Constructing a negative amount or multiplying by zero must fail; a value requiring rounding must not quietly become a nearby amount. The command below runs five Money tests without Docker. ReservationTest is a separate five-test class.
+MoneyTest passes exact arithmetic and invalid-value cases. Constructing a negative amount or multiplying by zero must fail; a value requiring rounding must not quietly become a nearby amount. The focused command runs five Money tests without Docker. ReservationTest is a separate five-test class.
 
 
 ### Reader experiment
